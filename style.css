@@ -1,0 +1,17 @@
+body {
+    background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
+}
+
+
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+}
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+}
+
+.bg-purple-1000 {
+    background-color: red;
+}
