@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -17,15 +19,16 @@
 </head>
 
 <body class="">
-
+    <div id="app">
         <header class="bg-gray-900 p-4 flex justify-between w-full top-0 z-10">
             <a href="index.html" class="text-xl flex justify-center text-white permanent-marker-regular text-gray-100">808Wave</a>
-            <div class="relative w-96 hidden sm:block">
-                <input type="text" placeholder="Buscar" class="w-full p-1 rounded-lg border-2 border-purple-900 hover:scale-105 transform transition-transform duration-500">
-                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 hover:text-gray-700">
+            <div class="relative w-96 hidden md:block">
+                <input type="text" class="w-full rounded-lg p-1 pl-3 border-2 border-purple-900 hover:scale-105 transform transition-transform duration-500" placeholder="Buscar">
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 hover:text-purple-900">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
+                      </svg>
+                      
                 </button>
             </div>
 
@@ -44,7 +47,7 @@
             </div>
         </header>
 
-            <div class="border bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
+            <div class="border-t bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
                 <a href="list.html" class="flex gap-1 w-20 items-center text-gray-400 hover:text-gray-100"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
                   </svg>
@@ -59,11 +62,41 @@
                 <img src="img/capa.jpeg" alt="capa" class="w-full h-96">
         </section>
 
-        <section class="grid grid-cols-1 sm:grid-cols-12 m-10 border-2 border-gray-200 h-96 hover:scale-105 transform transition-transform duration-500">
-            <div class="cols-span-6"></div>
-    </section>
+        <section class="grid grid-cols-12 gap-4 m-10 p-10 bg-black h-auto transform transition-transform duration-500">
+            <div v-for="beat in beats" class="col-span-12 md:col-span-3 hover:scale-105 transform transition-transform duration-500 rounded-lg">
+                <a @click="playerSong(beat.audio)"><div class="music-bg flex flex-col justify-between items-center rounded-lg" :style="`background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('${beat.capa}')`">
+                    <div class="flex items-center h-2/3">
+                        <svg v-if="!isPlayer || isPlayer && audioAtual !== beat.audio" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>  
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z" />
+                        </svg>                                          
+                    </div>
+                    <div class="h-1/2">
+                        <h2 class="text-xl font-semibold text-white">{{ beat.titulo }}</h2>
+                        <p class="text-gray-400 m-1">by prod.jp_</p>
+                        <span class="text-sm text-gray-400">Gênero</span>
+                        <span class="text-sm text-gray-400">•</span>
+                        <span class="text-sm text-gray-400">{{ beat.genero }}</span>
+                    </div>
+                </div></a>
 
-        <footer class="grid grid-cols-1 sm:grid-cols-3 items-center h-full gap-5 bg-gray-900 border border-gray-200">
+                <div class="">
+                    <div class="flex">
+                    <button class="flex items-center justify-center border border-gray-200 hover:bg-gray-900 w-40 h-10 text-center text-gray-400 hover:text-white space-x-1 w-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                      </svg>
+                      <span>{{ beat.valor }}</span>
+                    </button>
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="grid grid-cols-1 sm:grid-cols-3 items-center h-full gap-5 bg-gray-900 border-t border-gray-200">
             <a href="index.html" class=" text-gray-300 permanent-marker-regular text-center">&copy808Wave-2024</a>
 
             <div class="m-5 w-56 p-3 sm:flex-row">
@@ -82,7 +115,92 @@
 
     
         </footer>
+        </div>
 
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    audio: null,
+                    audioAtual: null,
+                    isPlayer: false,
+                    beats: [
+                        {
+                            audio: '/audios/prod.jp_.wav',
+                            capa: 'img/lean.jpeg',
+                            titulo: '[FREE] Stuani x Rudies Flacko x Pluggnb x Type Beat | "Lean"',
+                            genero: 'Pluggnb',
+                            valor: 'R$ 80,00'
+                        }, 
+                        {
+                            audio: '/audios/prod.jp(lovesong).wav',
+                            capa: 'img/bk.jpeg',
+                            titulo: '[FREE] Baco x Caio Luccas x R&B x Type Beat | "Lean"',
+                            genero: 'Pluggnb',
+                            valor: 'R$ 90,00'
+                        }, {
+                            audio: '/audios/prod.jp.wav',
+                            capa: 'img/ww.jpeg',
+                            titulo: '[FREE] Rudies Flacko x Pluggnb x Type Beat | "Lean"',
+                            genero: 'Pluggnb',
+                            valor: 'R$ 100,00'
+                        }, {
+                            audio: '/audios/prod.jp.trapfunk.wav',
+                            capa: 'img/wav.jpeg',
+                            titulo: '[FREE] Caio Luccas x Mu540 x TrapFunk x Type Beat | "Lean"',
+                            genero: 'Pluggnb',
+                            valor: 'R$ 80,00'
+                        }
+                    ],
+                },
+                methods: {
+                    playerSong(song){
+                        try {
+                            if(!this.audio){
+                                this.audio = new Audio(song);
+                                this.audioAtual = song;
+
+                                this.audio.volume = 0.4;
+                                this.audio.play();
+
+                                this.isPlayer = true;
+                            } else if(this.audio.paused && this.audioAtual === song) {
+                                this.audio.volume = 0.4;
+                                this.audio.play();
+                                this.isPlayer = true;
+                            } else if(this.audio.paused && this.audioAtual !== song) {
+                                this.audio.pause();
+                                this.audio = new Audio(song);
+                                this.audioAtual = song;
+
+                                this.audio.volume = 0.4;
+                                this.audio.play();
+
+                                this.isPlayer = true;
+                            } else if(!this.audio.paused && this.audioAtual === song) {
+                                this.audio.pause();
+                                this.isPlayer = false;
+                            } else if(!this.audio.paused && this.audioAtual !== song){
+                                this.audio.pause();
+                                this.audio = new Audio(song);
+                                this.audioAtual = song;
+
+                                this.audio.volume = 0.4;
+                                this.audio.play();
+
+                                this.isPlayer = true;
+                            }
+                        } catch (error) {
+                            console.log("error", error);
+                            this.isPlayer = false;
+                        }
+                    }
+                },
+                async mounted() {
+                   
+                }
+            });
+        </script>
     </body>
 
 </html>

@@ -15,3 +15,10 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba
 .bg-purple-1000 {
     background-color: red;
 }
+
+.music-bg {
+    background-size: cover;
+    height: 365px;
+    width: 100%;
+    padding: 10px 15px;
+}
