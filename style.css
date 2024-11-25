@@ -1,8 +1,43 @@
 body {
     background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
 }
 
+* {
+    scroll-behavior: smooth;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #E5E7EB;
+}
+
+::before,
+::after {
+    --tw-content: '';
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6366F1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #b9b3b3;
+}
+
+.h-105 {
+    height: 27rem; 
+}
 
 .permanent-marker-regular {
     font-family: "Permanent Marker", cursive;
@@ -14,6 +49,11 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba
 
 .bg-purple-1000 {
     background-color: red;
+}
+
+.bg-linear {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
 }
 
 .music-bg {

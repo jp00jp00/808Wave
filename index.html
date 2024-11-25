@@ -33,16 +33,9 @@
             </div>
 
             <div class="hidden sm:flex space-x-4">
-                <a href="#" class="poppins-thin flex items-center gap-2 text-gray-400 hover:text-gray-100"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg>
-                Login</a>
-
                 <a href="#" class="relative flex items-center justify-center hover:bg-gray-900 w-16 h-18 text-center text-gray-400 hover:text-white space-x-1"
-                @mouseover="showModal = true" 
-                @mouseleave="showModal = false">
-                                                
-                    
+                    @click="showModal = !showModal" 
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                       </svg>
@@ -51,90 +44,91 @@
                       {{ cartCount }}
                     </span>
 
-                    <div v-if="showModal" 
-                    class="absolute top-full -right-1 mt-2 w-64 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
-                   <p class="font-bold text-center mb-2">Seu Carrinho</p>
-           
-                   <div v-if="cartItems.length > 0">
-                       <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
-                           
-                           <div>
-                               <p class="font-semibold">{{ item.titulo }}</p>
-                               <p class="text-gray-400 text-xs">{{ item.valor }}</p>
-                           </div>
-                           
-                           <button @click="removeFromCart(index)" 
-                                   class="text-red-500 hover:underline text-xs">
-                               Remover
-                           </button>
-                       </div>
-                       
-                       <button @click="checkout" 
-                               class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-2">
-                           Comprar
-                       </button>
-                   </div>
-           
+                    <div v-if="showModal" class="absolute top-full -right-1 mt-2 w-64 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
+                        <p class="font-bold text-center mb-2">Seu Carrinho</p>
+                        <div v-if="cartItems.length > 0">
+                            <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
+                                
+                                <div>
+                                    <p class="font-semibold">{{ item.titulo }}</p>
+                                    <p class="text-gray-400 text-xs">{{ item.valor }}</p>
+                                </div>
+                                
+                                <button @click="removeFromCart(index)" 
+                                        class="text-red-500 hover:underline text-xs">
+                                    Remover
+                                </button>
+                            </div>
+                            
+                            <button @click="checkout" 
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-2">
+                                Comprar
+                            </button>
+                        </div>
                    <p v-else class="text-gray-400 text-center">Seu carrinho está vazio.</p>
                </div>
                 </a>
             </div>
         </header>
 
-            <div class="border-t bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
+            <div class="bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
                 <a href="list.html" class="flex gap-1 w-20 items-center text-gray-400 hover:text-gray-100"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
                   </svg>
                   <h1 class="poppins-thin">Traks</h1></a>
-                <a href="#" class=" flex gap-1 w-20 items-center text-gray-400 hover:text-gray-100"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  <h1 class="poppins-thin">Estilos</h1></a>
             </div>
         
-            <section class="grid grid-cols-1 sm:grid-cols-12 bg-gray-700 border border-gray-200 h-100">
-                <div class="w-screen bg-gradient-to-l from-transparent via-black to-black">
-                    <img src="img/capa.jpeg" alt="capa" class="w-full h-96 object-cover opacity-50">
-                <span class="absolute w-96 flex justify-center top-64 m-5 text-gray-100 font-bold text-5xl z-10 permanent-marker-regular">prod.jp</span>
+            <section class="flex bg-gray-700 h-100">
+                <div class="w-screen h-105 flex flex-col justify-center px-24 bg-no-repeat bg-cover" style="background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('img/capa-2.jpeg')">
+                    <h1 class="text-gray-100 font-bold text-5xl permanent-marker-regular">prod.jp</h1>
+                    <h3 class="poppins-thin text-gray-100 mt-3 text-base">Produtor / Beatmaker </h3>
                 </div>
             </section>
             
 
-        <section class="grid grid-cols-12 gap-4 m-10 p-10 bg-black h-auto transform transition-transform duration-500">
+        <section class="grid grid-cols-12 gap-4 p-4 md:p-10 bg-black h-auto transform transition-transform duration-500">
             <div v-for="beat in beats" :key="beat.titulo" class="col-span-12 md:col-span-3 hover:scale-105 transform transition-transform duration-500 rounded-lg">
-                <a @click="playerSong(beat.audio)"><div class="music-bg flex flex-col justify-between items-center rounded-lg" :style="`background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('${beat.capa}')`">
-                    <div class="flex items-center h-2/3">
-                        <svg v-if="!isPlayer || isPlayer && audioAtual !== beat.audio" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-                        </svg>  
-                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z" />
-                        </svg>                                          
+                <a @click="playerSong(beat.audio)">
+                    <div class="music-bg flex flex-col items-center rounded-lg" :style="`background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('${beat.capa}'); background-repeat: no-repeat; background-size: cover;`">
+                        <div class="flex justify-center	items-center h-48">
+                            <svg v-if="!isPlayer || isPlayer && audioAtual !== beat.audio" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                            </svg>  
+                            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z" />
+                            </svg>                                          
+                        </div>
+                        <div class="h-full">
+                            <a :href="`detail.html?beat=${beat.id}`" class="text-xl block font-semibold text-white">{{ beat.titulo }}</a>
+                            <p class="text-gray-400 m-1">by prod.jp_</p>
+                            <span class="text-sm text-gray-400">Gênero</span>
+                            <span class="text-sm text-gray-400">•</span>
+                            <span class="text-sm text-gray-400">{{ beat.genero }}</span>
+                        </div>
                     </div>
-                    <div class="h-1/2">
-                        <h2 class="text-xl font-semibold text-white">{{ beat.titulo }}</h2>
-                        <p class="text-gray-400 m-1">by prod.jp_</p>
-                        <span class="text-sm text-gray-400">Gênero</span>
-                        <span class="text-sm text-gray-400">•</span>
-                        <span class="text-sm text-gray-400">{{ beat.genero }}</span>
-                    </div>
-                </div></a>
+                </a>
 
                 <div class="">
                     <div class="flex">
-                    <button @click="addToCart" class="flex items-center justify-center border border-gray-200 hover:bg-gray-900 w-40 h-10 text-center text-gray-400 hover:text-white space-x-1 w-full">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                      </svg>
-                      <span>{{ beat.valor }}</span>
-                    </button>
-
-
-    
+                        <button @click="addToCart(beat)" class="flex items-center justify-center border border-gray-200 hover:bg-gray-900 w-40 h-10 text-center text-gray-400 hover:text-white space-x-1 w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <span>{{ beat.valor }}</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div v-if="cartCount > 0" class="fixed bottom-8 right-5 p-3 rounded-full bg-linear">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {{ cartCount }}
+              </span>
+        </div>
         
         <footer class="grid grid-cols-1 sm:grid-cols-3 items-center h-full gap-5 bg-gray-900 border-t border-gray-200">
             <a href="index.html" class=" text-gray-300 permanent-marker-regular text-center">&copy808Wave-2024</a>
@@ -164,11 +158,12 @@
                     audio: null,
                     audioAtual: null,
                     isPlayer: false,
-                    cartCount: 0, // Quantidade de itens no carrinho
-                    showModal: false, // Controla a modal
-                    cartItems: [], // Itens no carrinho
+                    cartCount: 0, 
+                    showModal: false, 
+                    cartItems: [], 
                     beats: [
                         {
+                            id: '191c2',
                             audio: '/audios/prod.jpindex.wav',
                             capa: 'img/lean.jpeg',
                             titulo: '[FREE] Stuani x Rudies Flacko x Pluggnb x Type Beat | "Lean"',
@@ -176,6 +171,7 @@
                             valor: 'R$ 80,00'
                         }, 
                         {
+                            id: 'n0165',
                             audio: '/audios/prod.jplov.wav',
                             capa: 'img/baco.webp',
                             titulo: '[FREE] Baco x Caio Luccas x R&B x Type Beat | "Amor"',
@@ -183,6 +179,7 @@
                             valor: 'R$ 90,00'
                         },
                         {
+                            id: '5f833',
                             audio: '/audios/prod.jpprb.wav',
                             capa: 'img/rudies.jpg',
                             titulo: '[FREE] Rudies Flacko x Pluggnb x Type Beat | "Shawty"',
@@ -190,6 +187,7 @@
                             valor: 'R$ 100,00'
                         },
                         {
+                            id: 'd843t',
                             audio: '/audios/prod.jptf.wav',
                             capa: 'img/caio.jpg',
                             titulo: '[FREE] Mc Ryan x Mc Kevin x TrapFunk x Type Beat | "Fim de ano"',
@@ -241,12 +239,14 @@
                         }
                     },
                     addToCart(beat) {
-                        // Adiciona um item na sacola
-                        this.cartItems.push(beat);
-                        this.cartCount = this.cartItems.length;
+                        
+                        if (!this.cartItems.map(item => item.id).includes(beat.id)) {
+                                this.cartItems.push(beat);
+                                this.cartCount = this.cartItems.length;
+                        }
+            
                     },
                     removeFromCart(index) {
-                        // Remove um item da sacola
                         this.cartItems.splice(index, 1);
                         this.cartCount = this.cartItems.length;
                     },
