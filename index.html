@@ -121,13 +121,37 @@
             </div>
         </section>
 
-        <div v-if="cartCount > 0" class="fixed bottom-8 right-5 p-3 rounded-full bg-linear">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
+        <div v-if="cartCount > 0" @click="showModal = !showModal" class="fixed bottom-8 right-5 p-3 rounded-full bg-linear z-10">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
             <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {{ cartCount }}
               </span>
+            </a>
+
+              <div v-if="showModal" class="absolute -top-44 right-16 -translate-y-full w-72 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
+                <p class="font-bold text-center mb-2">Seu Carrinho</p>
+                <div v-if="cartItems.length > 0" class="max-h-40 overflow-y-auto">
+                    <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
+                        <div class="z-30">
+                            <p class="font-semibold">{{ item.titulo }}</p>
+                            <p class="text-gray-400 text-xs">{{ item.valor }}</p>
+                        </div>
+                        <button 
+                            @click="removeFromCart(index)" 
+                            class="text-red-500 hover:underline text-xs">
+                            Remover
+                        </button>
+                    </div>
+                    <button 
+                        @click="checkout" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-2">
+                        Comprar
+                    </button>
+                </div>
+                <p v-else class="text-gray-400 text-center">Seu carrinho está vazio.</p>
+            </div>
         </div>
         
         <footer class="grid grid-cols-1 sm:grid-cols-3 items-center h-full gap-5 bg-gray-900 border-t border-gray-200">
@@ -243,6 +267,8 @@
                         if (!this.cartItems.map(item => item.id).includes(beat.id)) {
                                 this.cartItems.push(beat);
                                 this.cartCount = this.cartItems.length;
+
+                                this.showModal = true;
                         }
             
                     },
@@ -252,7 +278,7 @@
                     },
                     checkout() {
                         
-                        const message = `Olá, gostaria de comprar o(s) seguinte(s) beats: ${this.cartItems.map(item => item.titulo).join(', ')}`
+                        const message = `Olá, gostaria de comprar o(s) seguinte(s) beat(s):\n${this.cartItems.map(item => `* ${item.titulo}\n`)}`
                         const telefone = `5542999669574`;
                         const whats = `https://wa.me/${telefone}?text=${encodeURIComponent(message)}`
 
