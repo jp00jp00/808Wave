@@ -27,8 +27,7 @@
                 <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 hover:text-purple-900">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                      </svg>
-                      
+                      </svg>     
                 </button>
             </div>
 
@@ -38,7 +37,7 @@
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                      </svg>
+                    </svg>
 
                     <span v-if="cartCount > 0" class="relative -top-2 -left-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {{ cartCount }}
@@ -100,10 +99,10 @@
                         </div>
                         <div class="h-full">
                             <a :href="`detail.html?beat=${beat.id}`" class="text-xl block font-semibold text-white">{{ beat.titulo }}</a>
-                            <p class="text-gray-400 m-1">by prod.jp_</p>
-                            <span class="text-sm text-gray-400">Gênero</span>
-                            <span class="text-sm text-gray-400">•</span>
-                            <span class="text-sm text-gray-400">{{ beat.genero }}</span>
+                                <p class="text-gray-400 m-1">by prod.jp_</p>
+                                <span class="text-sm text-gray-400">Gênero</span>
+                                <span class="text-sm text-gray-400">•</span>
+                                <span class="text-sm text-gray-400">{{ beat.genero }}</span>
                         </div>
                     </div>
                 </a>
@@ -130,10 +129,11 @@
               </span>
             </a>
 
-              <div v-if="showModal" class="absolute -top-44 right-16 -translate-y-full w-72 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
+              <div v-if="showModal" class="absolute -top-44 right-12 -translate-y-full w-72 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
                 <p class="font-bold text-center mb-2">Seu Carrinho</p>
                 <div v-if="cartItems.length > 0" class="max-h-40 overflow-y-auto">
                     <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
+                       
                         <div class="z-30">
                             <p class="font-semibold">{{ item.titulo }}</p>
                             <p class="text-gray-400 text-xs">{{ item.valor }}</p>
