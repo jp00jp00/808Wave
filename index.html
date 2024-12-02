@@ -20,19 +20,19 @@
 
 <body class="">
     <div id="app">
-        <header class="bg-gray-900 p-4 flex justify-between w-full top-0 z-10">
+        <header class=" p-4 flex justify-between w-full top-0 bg-color z-10">
             <a href="index.html" class="text-xl flex justify-center text-white permanent-marker-regular text-gray-100">808Wave</a>
-            <div class="relative w-96 hidden md:block">
-                <input type="text" class="w-full rounded-lg p-1 pl-3 border-2 border-purple-900 hover:scale-105 transform transition-transform duration-500" placeholder="Buscar">
+        <div class="relative w-96 hidden md:block">
+        <!--<input type="text" class="w-full rounded-lg p-1 pl-3 border-2 border-purple-900 hover:scale-105 transform transition-transform duration-500" placeholder="Buscar">
                 <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 hover:text-purple-900">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                       </svg>     
-                </button>
-            </div>
+                </button>-->
+            </div> 
 
             <div class="hidden sm:flex space-x-4">
-                <a href="#" class="relative flex items-center justify-center hover:bg-gray-900 w-16 h-18 text-center text-gray-400 hover:text-white space-x-1"
+                <a href="#" @click.prevent="toggleCart('cart1')" class="relative flex items-center justify-center w-16 h-18 text-center text-gray-400 hover:text-white space-x-1"
                     @click="showModal = !showModal" 
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -43,7 +43,7 @@
                       {{ cartCount }}
                     </span>
 
-                    <div v-if="showModal" class="absolute top-full -right-4 mt-2 w-64 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
+                    <div v-if="showModal" v-for="cartVisibility['cart1']" class="absolute top-full -right-4 mt-2 w-64 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
                         <p class="font-bold text-center mb-2">Seu Carrinho</p>
                         <div v-if="cartItems.length > 0">
                             <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
@@ -70,15 +70,15 @@
             </div>
         </header>
 
-            <div class="bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
+           <!-- <div class="bg-gray-300 p-3 flex gap-10 justify-center items-center bg-gray-800 h-14">
                 <a href="list.html" class="flex gap-1 w-20 items-center text-gray-400 hover:text-gray-100"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
                   </svg>
                   <h1 class="poppins-thin">Tracks</h1></a>
-            </div>
+            </div> -->
         
-            <section class="flex bg-gray-700 h-100">
-                <div class="w-screen h-105 flex flex-col justify-center px-24 bg-no-repeat bg-cover" style="background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('img/capa-2.jpeg')">
+            <section class="flex h-100 ">
+                <div class="w-screen h-105 flex flex-col justify-center px-24 bg-no-repeat bg-cover bg-capa">
                     <h1 class="text-gray-100 font-bold text-5xl permanent-marker-regular">prod.jp</h1>
                     <h3 class="poppins-thin text-gray-100 mt-3 text-base">Produtor / Beatmaker </h3>
                 </div>
@@ -107,9 +107,9 @@
                     </div>
                 </a>
 
-                <div class="absolute top-80 bg-gray-700 border-2 border-gray-700 rounded-lg w-full">
+                <div class="absolute top-80  bg-gray-900 rounded-lg w-full">
                     <div class="flex">
-                        <button @click="addToCart(beat)" class="flex items-center justify-center hover:bg-gray-900 w-40 h-10 text-center text-gray-400 hover:text-white space-x-1 w-full">
+                        <button @click="addToCart(beat)" class="flex items-center justify-center hover:bg-gray-800 rounded-lg w-40 h-10 text-gray-300 hover:text-gray-400 space-x-1 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                             </svg>
@@ -120,8 +120,8 @@
             </div>
         </section>
 
-        <div v-if="cartCount > 0" @click="showModal = !showModal" class="fixed bottom-8 right-5 p-3 rounded-full bg-linear z-10">
-            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
+        <div v-if="cartCount > 0" class="fixed bottom-8 right-5 p-3 rounded-full bg-linear z-10">
+            <a href="#" @click.prevent="toggleCart('cart2')"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
             <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -129,7 +129,7 @@
               </span>
             </a>
 
-            <div v-if="showModal" class="absolute -top-48 -right-5 -translate-y-full w-72 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
+            <div v-if="cartVisibility['cart2']" class="absolute -top-48 -right-5 -translate-y-full w-72 p-3 bg-gray-800 text-white text-sm rounded shadow-lg z-10">
                 <p class="font-bold text-center mb-2">Seu Carrinho</p>
                 <div v-if="cartItems.length > 0" class="max-h-40 overflow-y-auto">
                     <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between items-center mb-2">
@@ -154,7 +154,7 @@
             </div>
         </div>
         
-        <footer class="grid grid-cols-1 sm:grid-cols-3 items-center h-full gap-5 bg-gray-900">
+        <footer class="grid grid-cols-1 sm:grid-cols-3 items-center bg-color border-t border-gray-900 h-full gap-5 ">
             <a href="index.html" class=" text-gray-300 permanent-marker-regular text-center">&copy808Wave-2024</a>
 
             <div class="m-5 w-56 p-3 sm:flex-row">
@@ -182,7 +182,10 @@
                     audio: null,
                     audioAtual: null,
                     isPlayer: false,
-                    cartCount: 0, 
+                    cartCount: 0,
+                    cartVisibility: {},
+                    cart1: false,
+                    cart2: false, 
                     showModal: false, 
                     cartItems: [], 
                     beats: [
@@ -199,7 +202,7 @@
                             audio: '/audios/prod.jplov.wav',
                             capa: 'img/baco.webp',
                             titulo: '[FREE] Baco x Caio Luccas x R&B x Type Beat | "Amor"',
-                            genero: 'Pluggnb',
+                            genero: 'R&B',
                             valor: 'R$ 90,00'
                         },
                         {
@@ -215,7 +218,7 @@
                             audio: '/audios/prod.jptf.wav',
                             capa: 'img/caio.jpg',
                             titulo: '[FREE] Mc Ryan x Mc Kevin x TrapFunk x Type Beat | "Fim de ano"',
-                            genero: 'Pluggnb',
+                            genero: 'Funk',
                             valor: 'R$ 80,00'
                         }
                     ],
@@ -272,13 +275,20 @@
                         }
             
                     },
+                    toggleCart(id) {
+                        this.cartVisibility = { [id]: !this.cartVisibility[id] };
+                    },
                     removeFromCart(index) {
                         this.cartItems.splice(index, 1);
                         this.cartCount = this.cartItems.length;
                     },
                     checkout() {
                         
-                        const message = `Olá, gostaria de comprar o(s) seguinte(s) beat(s):\n${this.cartItems.map(item => `* ${item.titulo}\n`)}`
+                        let message = `Olá, gostaria de comprar o(s) seguinte(s) beat(s):\n`;
+                        for(let i = 0; i < this.cartItems.length; i++){
+                            const item  = this.cartItems[i];
+                            message += `* ${item.titulo}\n`
+                        }
                         const telefone = `5542999669574`;
                         const whats = `https://wa.me/${telefone}?text=${encodeURIComponent(message)}`
 

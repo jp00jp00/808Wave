@@ -7,6 +7,24 @@ body {
     scroll-behavior: smooth;
 }
 
+.bg-color {
+    background-color: #0D0D0D;
+}
+
+.bg-bg {
+    background-color: #292929;
+}
+
+.bg-capa {
+    background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('img/capa-2.jpeg');
+}
+
+@media (max-width: 900px) {
+    .bg-capa {
+        background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('img/capa-mobile.png');
+    }
+}
+
 *,
 ::before,
 ::after {
@@ -53,7 +71,7 @@ body {
 
 .bg-linear {
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,24) 0%, rgba(53, 27, 110, 0.979) 50%, rgba(0,0,0,24) 100%);
 }
 
 .music-bg {
