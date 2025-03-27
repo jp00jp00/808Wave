@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+body {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,27,110,1) 50%, rgba(0,0,0,1) 100%);
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+.bg-color {
+    background-color: #0D0D0D;
+}
+
+.bg-bg {
+    background-color: #292929;
+}
+
+.bg-capa {
+    background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('./capa.jpeg');
+}
+
+@media (max-width: 900px) {
+    .bg-capa {
+        background-image: linear-gradient( rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('./capa-mobile.png');
+    }
+}
+
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #E5E7EB;
+}
+
+::before,
+::after {
+    --tw-content: '';
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6366F1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #b9b3b3;
+}
+
+.h-105 {
+    height: 27rem; 
+}
+
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+}
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+}
+
+.bg-purple-1000 {
+    background-color: red;
+}
+
+.bg-linear {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,24) 0%, rgba(53, 27, 110, 0.979) 50%, rgba(0,0,0,24) 100%);
+}
+
+.music-bg {
+    background-size: cover;
+    height: 365px;
+    width: 100%;
+    padding: 10px 15px;
+}
+
